@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.ProductsDAO"> 
+    <select id="getProductsById"  resultType="com.app.entity.Products">
+        select
+        * from Videos where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from Videos where id=#{id}
+	</delete>
+    <select id="getProductsCount" resultType="int">
+        select count(id) from Videos
+    </select>
+    <select id="getAllProducts" resultType="com.app.entity.Products">
+        select * from Videos order by id desc
+    </select>
+     <select id="getRand" resultType="com.app.entity.Products">
+        select * from Videos order by click desc
+    </select>
+    
+     <select id="search" resultType="com.app.entity.Products">
+        select * from Videos where product_name LIKE #{product_name}
+    </select>
+     <select id="getProductsRand" resultType="com.app.entity.Products">
+        select * from Videos ORDER BY RAND()
+    </select>
+    <select id="getProductsByCate" resultType="com.app.entity.Products">
+        select * from Videos where `category`=#{category}
+    </select>
+    <insert id="insert" parameterType="com.app.entity.Products">
+        insert into
+        Videos(uid,code,product_name,description,thumb,content,category_name,click,category,store,vpath,price,created,updated,status,brandid,brandname,skuid,skuname,jf,shopname,shopid,userid,username,filepath) 
+        values(#{uid},#{code},#{product_name},#{description},#{thumb},#{content},#{category_name},#{click},#{category},#{store},#{vpath},#{price},#{created},#{updated},#{status},#{brandid},#{brandname},#{skuid},#{skuname},#{jf},#{shopname},#{shopid},#{userid},#{username},#{filepath});
+    </insert>
+        
+    <update id="update" parameterType="com.app.entity.Products">
+		update Videos set uid=#{uid},code=#{code},product_name=#{product_name},description=#{description},thumb=#{thumb},content=#{content},category_name=#{category_name},click=#{click},category=#{category},store=#{store},vpath=#{vpath},price=#{price},created=#{created},updated=#{updated},status=#{status},brandid=#{brandid},brandname=#{brandname},skuid=#{skuid},skuname=#{skuname},jf=#{jf},shopname=#{shopname},shopid=#{shopid},userid=#{userid},username=#{username},filepath=#{filepath} where id=#{id}
+	</update>
+        </mapper>
